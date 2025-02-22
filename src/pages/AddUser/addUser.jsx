@@ -31,10 +31,7 @@ const AddUser = () => {
     formData.append('avatar', imageData);
 
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/upload-image',
-        formData
-      );
+      const response = await axios.post('/upload-image', formData);
       setUser({ ...user, image: response.data.url });
     } catch (err) {
       console.error('Image upload failed:', err);
@@ -45,7 +42,7 @@ const AddUser = () => {
   console.log(user);
 
   const onAddUserClick = async () => {
-    const response = await axios.post('http://localhost:3000/api/users', user);
+    const response = await axios.post('/users', user);
     navigate('/');
   };
 

@@ -24,7 +24,7 @@ const EditUser = () => {
   const { id } = useParams();
 
   const getUserByID = async () => {
-    const response = await axios.get('http://localhost:3000/api/users/' + id);
+    const response = await axios.get('/users/' + id);
     setUser(response.data);
   };
 
@@ -39,10 +39,7 @@ const EditUser = () => {
   console.log(user);
 
   const onEditUserClick = async () => {
-    const response = await axios.patch(
-      'http://localhost:3000/api/users/' + id,
-      user
-    );
+    const response = await axios.patch('/users/' + id, user);
     navigate('/');
   };
 

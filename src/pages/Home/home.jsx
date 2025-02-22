@@ -4,7 +4,7 @@ import Input from '../../components/Input/input';
 import Button from '../../components/Button/button';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import Modal from '../../components/Modal/Modal';
@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   const getAllUsers = async () => {
-    const response = await axios.get('http://localhost:3000/api/users');
+    const response = await axios.get('/users');
     setUsers(response.data);
   };
 
@@ -96,9 +96,7 @@ const Home = () => {
   };
 
   const onDeleteUser = async () => {
-    const response = await axios.delete(
-      'http://localhost:3000/api/users/' + selectedUserId
-    );
+    const response = await axios.delete('/users/' + selectedUserId);
     getAllUsers();
     setDeleteModal(false);
   };
@@ -111,9 +109,7 @@ const Home = () => {
   console.log(name);
 
   const onOkButtonClick = async () => {
-    const response = await axios.get(
-      'http://localhost:3000/api/users?name=' + name
-    );
+    const response = await axios.get('/users?name=' + name);
 
     console.log(response.data);
     setUsers(response.data);
